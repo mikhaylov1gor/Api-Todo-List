@@ -1,12 +1,21 @@
 WEB repository: https://github.com/mikhaylov1gor/React-Todo-List
 
-!!! Before running the project, make sure the API is running on the correct port. To change the port for API interaction: !!!
+!!! Before running the project, make sure the API is running on the correct port. To change the port for WEB interaction: !!!
 
-1. Open the file `src/API/api.ts` 
-2. Find the line where the API URL is defined, for example:
+1. Open the file `Program.cs`.
+2. Find the following code snippet that configures CORS:
 
-   ```typescript
-   const url = "http://localhost:5207/api/Task";'; // Replace with the port your API is running on
+   ```csharp
+   builder.Services.AddCors(options =>
+   {
+       options.AddPolicy(name: MyAllowSpecificOrigins,
+           policy =>
+           {
+               policy.WithOrigins("http://localhost:5174") // Change this URL to match the port of your web app
+                     .AllowAnyMethod()
+                     .AllowAnyHeader();
+           });
+   });
 
 Running Locally
 
